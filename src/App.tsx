@@ -4,6 +4,7 @@ import { LengthCalculatorComponent } from "./Components/LengthCalculatorComponen
 import { NumberTypeConverterComponent } from "./Components/BinaryConverterComponent";
 import { SpeedCalculatorComponent } from "./Components/SpeedCalculatorComponent";
 import { useState } from 'react';
+import { TempCalculatorComponent } from "./Components/TemperatureCalculatorComponent";
 
 function App() {
   const [selectedCalculator, setSelectedCalculator] = useState("Length");
@@ -38,6 +39,7 @@ function App() {
           {selectedCalculator === "Area" && <AreaCalculatorComponent></AreaCalculatorComponent>}
           {selectedCalculator === "Converter" && <NumberTypeConverterComponent></NumberTypeConverterComponent>}
           {selectedCalculator === "Speed" && <SpeedCalculatorComponent></SpeedCalculatorComponent>}
+          {selectedCalculator === "Temperature" && <TempCalculatorComponent></TempCalculatorComponent>}
         </div>
       </div>
     </>

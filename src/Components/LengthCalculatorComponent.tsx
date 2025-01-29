@@ -17,7 +17,7 @@ export const LengthCalculatorComponent = () => {
         type: "length"
     });
 
-    const [value, setValue] = useState<number | null>(null);
+    const [value, setValue] = useState<string>('');
     const [result, setResult] = useState<number | null>(null);
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -29,12 +29,12 @@ export const LengthCalculatorComponent = () => {
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value ? parseFloat(event.target.value) : null);
+        setValue(event.target.value);
     };
 
     const handleCalculate = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const numbericValue = value !== null ? value : NaN;
+        const numbericValue = parseFloat(value);
         if (!isNaN(numbericValue)) {
             const result = LengthCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
@@ -73,12 +73,19 @@ export const LengthCalculatorComponent = () => {
                 </select>
                 <br />
                 <label>Value: </label>
-                <input type="number" id="value" value={value !== null ? value : ''} onChange={handleInputChange} />
+                <input type="text" id="value" value={value !== null ? value : ''} onChange={handleInputChange} />
                 <br />
                 <button type="submit">Calculate</button>
                 {result !== null && (
                     <div>
-                        <h2>Result: {result} {selectedUnits.unit2}s</h2>
+                        {selectedUnits.unit2 === "kilometer" && <h2>Result: {result} km</h2>}
+                        {selectedUnits.unit2 === "meter" && <h2>Result: {result} m</h2>}
+                        {selectedUnits.unit2 === "centimeter" && <h2>Result: {result} cm</h2>}
+                        {selectedUnits.unit2 === "millimeter" && <h2>Result: {result} mm</h2>}
+                        {selectedUnits.unit2 === "mile" && <h2>Result: {result} mi</h2>}
+                        {selectedUnits.unit2 === "yard" && <h2>Result: {result} yd</h2>}
+                        {selectedUnits.unit2 === "foot" && <h2>Result: {result} ft</h2>}
+                        {selectedUnits.unit2 === "inch" && <h2>Result: {result} in</h2>}
                     </div>
                 )}
             </form>

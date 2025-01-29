@@ -1,20 +1,20 @@
 import React from 'react';
 import { useState } from 'react';
-import { SpeedUnits } from '../types';
-import SpeedCalculator from '../Calculators/calculatorSpeed';
+import { TempUnits } from '../types';
+import { TempCalculator } from '../Calculators/calculatorTemp';
 
 interface Calculation {
-    type: "speed",
-    unit1: SpeedUnits,
-    unit2: SpeedUnits
+    type: "temp",
+    unit1: TempUnits,
+    unit2: TempUnits
 }
 
-export const SpeedCalculatorComponent = () => {
+export const TempCalculatorComponent = () => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
-        unit1: "meters per second",
-        unit2: "kilometers per hour",
-        type: "speed"
+        unit1: "celcius",
+        unit2: "fahrenheit",
+        type: "temp"
     });
 
     const [value, setValue] = useState<number | null>(null);
@@ -36,7 +36,7 @@ export const SpeedCalculatorComponent = () => {
         event.preventDefault();
         const numbericValue = value !== null ? value : NaN;
         if (!isNaN(numbericValue)) {
-            const result = SpeedCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
+            const result = TempCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
         } else {
             setResult(null);
@@ -50,20 +50,16 @@ export const SpeedCalculatorComponent = () => {
             <form onSubmit={(handleCalculate)}>
                 <label>Choose a unit: </label>
                 <select id="unit1" value={selectedUnits.unit1} onChange={handleSelectChange}>
-                    <option value="meters per second">Meters per second</option>
-                    <option value="kilometers per hour">Kilometers per hour</option>
-                    <option value="miles per hour">Miles per hour</option>
-                    <option value="feet per second">Feet per second</option>
-                    <option value="knots">Knots</option>
+                    <option value="celcius">Celcius</option>
+                    <option value="fahrenheit">Fahrenheit</option>
+                    <option value="kelvin">Kelvin</option>
                 </select>
                 <br />
                 <label>Choose target unit: </label>
                 <select id="unit2" value={selectedUnits.unit2} onChange={handleSelectChange}>
-                    <option value="meters per second">Meters per second</option>
-                    <option value="kilometers per hour">Kilometers per hour</option>
-                    <option value="miles per hour">Miles per hour</option>
-                    <option value="feet per second">Feet per second</option>
-                    <option value="knots">Knots</option>
+                    <option value="celcius">Celcius</option>
+                    <option value="fahrenheit">Fahrenheit</option>
+                    <option value="kelvin">Kelvin</option>
                 </select>
                 <br />
                 <label>Value: </label>
@@ -72,11 +68,9 @@ export const SpeedCalculatorComponent = () => {
                 <button type="submit">Calculate</button>
                 {result !== null && (
                     <div>
-                        {selectedUnits.unit2 === "meters per second" && <h2>Result: {result} m/s</h2>}
-                        {selectedUnits.unit2 === "kilometers per hour" && <h2>Result: {result} km/h</h2>}
-                        {selectedUnits.unit2 === "miles per hour" && <h2>Result: {result} mph</h2>}
-                        {selectedUnits.unit2 === "feet per second" && <h2>Result: {result} ft/s</h2>}
-                        {selectedUnits.unit2 === "knots" && <h2>Result: {result} knots</h2>}
+                        {selectedUnits.unit2 === "celcius" && <h2>Result: {result} °C</h2>}
+                        {selectedUnits.unit2 === "fahrenheit" && <h2>Result: {result} °F</h2>}
+                        {selectedUnits.unit2 === "kelvin" && <h2>Result: {result} K</h2>}
                     </div>
                 )}
             </form>

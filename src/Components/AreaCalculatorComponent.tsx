@@ -17,7 +17,7 @@ export const AreaCalculatorComponent = () => {
         type: "Area"
     });
 
-    const [value, setValue] = useState<number | null>(null);
+    const [value, setValue] = useState<string>('');
     const [result, setResult] = useState<number | null>(null);
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -29,12 +29,12 @@ export const AreaCalculatorComponent = () => {
     };
 
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setValue(event.target.value ? parseFloat(event.target.value) : null);
+        setValue(event.target.value);
     };
 
     const handleCalculate = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const numbericValue = value !== null ? value : NaN;
+        const numbericValue = parseFloat(value);
         if (!isNaN(numbericValue)) {
             const result = AreaCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
@@ -64,7 +64,7 @@ export const AreaCalculatorComponent = () => {
                 <br />
                 <label>Choose target unit: </label>
                 <select id="unit2" value={selectedUnits.unit2} onChange={handleSelectChange}>
-                <option value="Square kilometer">Square Kilometer</option>
+                    <option value="square kilometer">Square Kilometer</option>
                     <option value="square meter">Square Meter</option>
                     <option value="square centimeter">Square Centimeter</option>
                     <option value="square millimeter">Square Millimeter</option>
@@ -77,12 +77,21 @@ export const AreaCalculatorComponent = () => {
                 </select>
                 <br />
                 <label>Value: </label>
-                <input type="number" id="value" value={value !== null ? value : ''} onChange={handleInputChange} />
+                <input type="text" id="value" value={value !== null ? value : ''} onChange={handleInputChange} />
                 <br />
                 <button type="submit">Calculate</button>
                 {result !== null && (
                     <div>
-                        <h2>Result: {result} {selectedUnits.unit2}s</h2>
+                        {selectedUnits.unit2 === "square kilometer" && <h2>Result: {result} km²</h2>}
+                        {selectedUnits.unit2 === "square meter" && <h2>Result: {result} m²</h2>}
+                        {selectedUnits.unit2 === "square centimeter" && <h2>Result: {result} cm²</h2>}
+                        {selectedUnits.unit2 === "square millimeter" && <h2>Result: {result} mm²</h2>}
+                        {selectedUnits.unit2 === "square mile" && <h2>Result: {result} mi²</h2>}
+                        {selectedUnits.unit2 === "square yard" && <h2>Result: {result} yd²</h2>}
+                        {selectedUnits.unit2 === "square foot" && <h2>Result: {result} ft²</h2>}
+                        {selectedUnits.unit2 === "square inch" && <h2>Result: {result} in²</h2>}
+                        {selectedUnits.unit2 === "hectare" && <h2>Result: {result} ha</h2>}
+                        {selectedUnits.unit2 === "acre" && <h2>Result: {result} acres</h2>}
                     </div>
                 )}
             </form>

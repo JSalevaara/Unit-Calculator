@@ -1,6 +1,7 @@
 import { LengthUnits } from '../types';
 import { AreaUnits } from '../types';
 import { SpeedUnits } from '../types';
+import { TempUnits } from '../types';
 
 export const lengthRates: { [key in LengthUnits]: { [key in LengthUnits]: number } } = {
     meter: {
@@ -243,5 +244,23 @@ export const speedRates: { [key in SpeedUnits]: { [key in SpeedUnits]: number}} 
         "miles per hour": 1.15078,
         "feet per second": 1.68781,
         "knots": 1
+    }
+};
+
+export const tempRates: { [key in TempUnits]: { [key in TempUnits]: (value: number) => number}} = {
+    "celcius": {
+        "celcius": value => value,
+        "kelvin": value => value + 273.15,
+        "fahrenheit": value => (value * 9/5) + 32
+    },
+    "kelvin": {
+        "celcius": value => value - 273.15,
+        "kelvin": value => value,
+        "fahrenheit": value => (value - 273.15) * 9/5 + 32
+    },
+    "fahrenheit": {
+        "celcius": value => (value - 32) * 5/9,
+        "kelvin": value => (value - 32) * 5/9 + 273.15,
+        "fahrenheit": value => value
     }
 };
