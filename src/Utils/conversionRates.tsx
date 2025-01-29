@@ -1,5 +1,6 @@
 import { LengthUnits } from '../types';
 import { AreaUnits } from '../types';
+import { SpeedUnits } from '../types';
 
 export const lengthRates: { [key in LengthUnits]: { [key in LengthUnits]: number } } = {
     meter: {
@@ -83,7 +84,6 @@ export const lengthRates: { [key in LengthUnits]: { [key in LengthUnits]: number
         inch: 1
     }
 };
-
 
 export const areaRates: { [key in AreaUnits]: { [key in AreaUnits]: number}} = {
     "square meter": {
@@ -205,5 +205,43 @@ export const areaRates: { [key in AreaUnits]: { [key in AreaUnits]: number}} = {
         "square inch": 6272640,
         "hectare": 0.404686,
         "acre": 1
+    }
+};
+
+export const speedRates: { [key in SpeedUnits]: { [key in SpeedUnits]: number}} = {
+    "meters per second": {
+        "meters per second": 1,
+        "kilometers per hour": 3.6,
+        "miles per hour": 2.23694,
+        "feet per second": 3.28084,
+        "knots": 1.94384
+    },
+    "kilometers per hour": {
+        "meters per second": 0.277778,
+        "kilometers per hour": 1,
+        "miles per hour": 0.621371,
+        "feet per second": 0.911344,
+        "knots": 0.539957
+    },
+    "miles per hour": {
+        "meters per second": 0.44704,
+        "kilometers per hour": 1.60934,
+        "miles per hour": 1,
+        "feet per second": 1.46667,
+        "knots": 0.868976
+    },
+    "feet per second": {
+        "meters per second": 0.3048,
+        "kilometers per hour": 1.09728,
+        "miles per hour": 0.681818,
+        "feet per second": 1,
+        "knots": 0.592484
+    },
+    "knots": {
+        "meters per second": 0.514444,
+        "kilometers per hour": 1.852,
+        "miles per hour": 1.15078,
+        "feet per second": 1.68781,
+        "knots": 1
     }
 };
