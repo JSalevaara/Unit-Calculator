@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { LengthUnits } from '../types';
-import LengthCalculator from '../Calculators/calculatorLength';
+import LengthCalculator from '../Calculators/ConverterLength';
 
 interface Calculation {
     type: "length",
@@ -9,7 +9,7 @@ interface Calculation {
     unit2: LengthUnits
 }
 
-export const LengthCalculatorComponent = () => {
+export const LengthConverterComponent = () => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "meter",
@@ -46,7 +46,7 @@ export const LengthCalculatorComponent = () => {
 
     return (
         <div>
-            <h1>Length Calculator</h1>
+            <h1>Length Converter</h1>
             <form onSubmit={(handleCalculate)}>
                 <label>Choose a unit: </label>
                 <select id="unit1" value={selectedUnits.unit1} onChange={handleSelectChange}>

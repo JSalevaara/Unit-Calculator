@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { TempUnits } from '../types';
-import { TempCalculator } from '../Calculators/calculatorTemp';
+import { TempCalculator } from '../Calculators/ConverterTemp';
 
 interface Calculation {
     type: "temp",
@@ -9,7 +9,7 @@ interface Calculation {
     unit2: TempUnits
 }
 
-export const TempCalculatorComponent = () => {
+export const TempConverterComponent = () => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "celcius",
@@ -46,7 +46,7 @@ export const TempCalculatorComponent = () => {
 
     return (
         <div>
-            <h1>Length Calculator</h1>
+            <h1>Temperature Converter</h1>
             <form onSubmit={(handleCalculate)}>
                 <label>Choose a unit: </label>
                 <select id="unit1" value={selectedUnits.unit1} onChange={handleSelectChange}>

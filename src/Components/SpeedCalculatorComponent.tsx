@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { SpeedUnits } from '../types';
-import SpeedCalculator from '../Calculators/calculatorSpeed';
+import SpeedCalculator from '../Calculators/ConverterSpeed';
 
 interface Calculation {
     type: "speed",
@@ -9,7 +9,7 @@ interface Calculation {
     unit2: SpeedUnits
 }
 
-export const SpeedCalculatorComponent = () => {
+export const SpeedConverterComponent = () => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "meters per second",
@@ -46,7 +46,7 @@ export const SpeedCalculatorComponent = () => {
 
     return (
         <div>
-            <h1>Length Calculator</h1>
+            <h1>Speed Converter</h1>
             <form onSubmit={(handleCalculate)}>
                 <label>Choose a unit: </label>
                 <select id="unit1" value={selectedUnits.unit1} onChange={handleSelectChange}>
@@ -80,6 +80,9 @@ export const SpeedCalculatorComponent = () => {
                     </div>
                 )}
             </form>
+            <div>
+
+            </div>
         </div>
     );
 };

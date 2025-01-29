@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { AreaUnits } from "../types";
-import AreaCalculator from "../Calculators/calculatorArea";
+import AreaCalculator from "../Calculators/ConverterArea";
 
 interface Calculation {
     type: "Area",
@@ -9,7 +9,7 @@ interface Calculation {
     unit2: AreaUnits
 }
 
-export const AreaCalculatorComponent = () => {
+export const AreaConverterComponent = () => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "square meter",
@@ -46,7 +46,7 @@ export const AreaCalculatorComponent = () => {
 
     return (
         <div>
-            <h1>Area Calculator</h1>
+            <h1>Area Converter</h1>
             <form onSubmit={(handleCalculate)}>
                 <label>Choose a unit: </label>
                 <select id="unit1" value={selectedUnits.unit1} onChange={handleSelectChange}>

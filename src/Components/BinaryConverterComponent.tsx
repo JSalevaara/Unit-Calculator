@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { NumberConversion } from '../types';
-import { Converter } from '../Calculators/binaryConverter';
+import { Converter } from '../Calculators/ConverterBinary';
 
 interface Conversion {
     type: "conversion",
@@ -46,7 +46,7 @@ export const NumberTypeConverterComponent = () => {
 
     return (
         <div>
-            <h1>Length Calculator</h1>
+            <h1>Number type converter</h1>
             <form onSubmit={(handleCalculate)}>
                 <label>Choose a unit: </label>
                 <select id="unit1" value={selectedUnits.unit1} onChange={handleSelectChange}>
