@@ -1,6 +1,7 @@
 import { AreaCalculatorComponent } from "./Components/AreaCalculatorComponent";
 import { Header } from "./Components/Header";
 import { LengthCalculatorComponent } from "./Components/LengthCalculator";
+import { NumberTypeConverterComponent } from "./Components/BinaryConverterComponent";
 import { useState } from 'react';
 
 function App() {
@@ -20,7 +21,7 @@ function App() {
           <select onChange={handleCalculatorSelect}>
             <option value="Length">Length</option>
             <option value="Area">Area</option>
-            <option value="Binary">Binary</option>
+            <option value="Converter">Number type converter</option>
             <option value="Speed">Speed</option>
             <option value="Temperature">Temperature</option>
             <option value="Volume">Volume</option>
@@ -34,6 +35,7 @@ function App() {
           </select>
           {selectedCalculator === "Length" && <LengthCalculatorComponent />}
           {selectedCalculator === "Area" && <AreaCalculatorComponent></AreaCalculatorComponent>}
+          {selectedCalculator === "Converter" && <NumberTypeConverterComponent></NumberTypeConverterComponent>}
         </div>
       </div>
     </>
