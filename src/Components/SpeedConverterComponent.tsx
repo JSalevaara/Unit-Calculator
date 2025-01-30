@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { SpeedUnits } from '../types';
-import SpeedCalculator from '../Calculators/ConverterSpeed';
+import SpeedConverter from '../Converters/ConverterSpeed';
 
 interface Calculation {
     type: "speed",
@@ -36,7 +36,7 @@ export const SpeedConverterComponent = () => {
         event.preventDefault();
         const numbericValue = value !== null ? value : NaN;
         if (!isNaN(numbericValue)) {
-            const result = SpeedCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
+            const result = SpeedConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
         } else {
             setResult(null);

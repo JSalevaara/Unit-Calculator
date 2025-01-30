@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { LengthUnits } from '../types';
-import LengthCalculator from '../Calculators/ConverterLength';
+import LengthConverter from '../Converters/ConverterLength';
 
 interface Calculation {
     type: "length",
@@ -36,7 +36,7 @@ export const LengthConverterComponent = () => {
         event.preventDefault();
         const numbericValue = parseFloat(value);
         if (!isNaN(numbericValue)) {
-            const result = LengthCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
+            const result = LengthConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
         } else {
             setResult(null);

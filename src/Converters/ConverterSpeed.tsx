@@ -2,7 +2,7 @@ import { speedRates } from "../Utils/conversionRates";
 import { SpeedUnits } from "../types";
 import { roundTo } from "../Utils/utilities";
 
-const SpeedCalculator = (unit1: SpeedUnits, unit2: SpeedUnits, value: number): number => {
+const SpeedConverter = (unit1: SpeedUnits, unit2: SpeedUnits, value: number): number => {
     if (unit1 === unit2) {
         return value;
     }
@@ -11,4 +11,4 @@ const SpeedCalculator = (unit1: SpeedUnits, unit2: SpeedUnits, value: number): n
     return roundTo(result, 6);
 };
 
-export default SpeedCalculator;
+export default SpeedConverter;

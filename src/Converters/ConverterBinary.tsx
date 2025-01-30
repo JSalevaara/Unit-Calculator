@@ -1,6 +1,6 @@
 import { NumberConversion } from "../types";
 
-export const Converter = (unit1: NumberConversion, unit2: NumberConversion, value: string): string => {
+export const NumberConverter = (unit1: NumberConversion, unit2: NumberConversion, value: string): string => {
     let decimalValue: number;
 
     switch (unit1) {

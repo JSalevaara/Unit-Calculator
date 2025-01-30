@@ -2,7 +2,7 @@ import { tempRates } from "../Utils/conversionRates";
 import { TempUnits } from "../types";
 import { roundTo } from "../Utils/utilities";
 
-export const TempCalculator = (unit1: TempUnits, unit2: TempUnits, value: number): number => {
+export const TempConverter = (unit1: TempUnits, unit2: TempUnits, value: number): number => {
     if (unit1 === unit2) {
         return value;
     }
@@ -11,4 +11,4 @@ export const TempCalculator = (unit1: TempUnits, unit2: TempUnits, value: number
     return roundTo(result, 6);
 };
 
-export default TempCalculator;
+export default TempConverter;

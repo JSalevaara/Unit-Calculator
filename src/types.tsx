@@ -10,3 +10,5 @@ export type SpeedUnits = "meters per second" | "kilometers per hour" | "miles pe
 export type TempUnits = "celcius" | "kelvin" | "fahrenheit"
 
 export type VolumeUnits = "deciliter" | "cubic meter" | "liter" | "milliliter" | "cubic centimeter" | "cubic inch" | "cubic foot" | "cubic yard" | "fluid ounce" | "gallon" | "quart" | "pint" | "cup" | "tablespoon" | "teaspoon"
+
+export type StorageUnits = "bit" | "kilobit" | "megabit" | "gigabit" | "terabit" | "petabit" | "byte" | "kilobyte" | "megabyte" | "gigabyte" | "terabyte" | "petabyte"

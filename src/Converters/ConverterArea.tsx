@@ -2,7 +2,7 @@ import { areaRates } from "../Utils/conversionRates";
 import { AreaUnits } from "../types";
 import { roundTo } from "../Utils/utilities";
 
-const AreaCalculator = (unit1: AreaUnits, unit2: AreaUnits, value: number): number => {
+const AreaConverter = (unit1: AreaUnits, unit2: AreaUnits, value: number): number => {
     if (unit1 === unit2) {
         return value;
     }
@@ -11,4 +11,4 @@ const AreaCalculator = (unit1: AreaUnits, unit2: AreaUnits, value: number): numb
     return roundTo(result, 6);
 };
 
-export default AreaCalculator;
+export default AreaConverter;

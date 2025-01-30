@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { TempUnits } from '../types';
-import { TempCalculator } from '../Calculators/ConverterTemp';
+import { TempConverter } from '../Converters/ConverterTemp';
 
 interface Calculation {
     type: "temp",
@@ -36,7 +36,7 @@ export const TempConverterComponent = () => {
         event.preventDefault();
         const numbericValue = value !== null ? value : NaN;
         if (!isNaN(numbericValue)) {
-            const result = TempCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
+            const result = TempConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
         } else {
             setResult(null);

@@ -2,7 +2,7 @@ import { lengthRates } from "../Utils/conversionRates";
 import { LengthUnits } from "../types";
 import { roundTo } from "../Utils/utilities";
 
-const LengthCalculator = (unit1: LengthUnits, unit2: LengthUnits, value: number): number => {
+const LengthConverter = (unit1: LengthUnits, unit2: LengthUnits, value: number): number => {
     if (unit1 === unit2) {
         return value;
     }
@@ -11,4 +11,4 @@ const LengthCalculator = (unit1: LengthUnits, unit2: LengthUnits, value: number)
     return roundTo(result, 6);
 };
 
-export default LengthCalculator;
+export default LengthConverter;

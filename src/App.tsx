@@ -1,11 +1,12 @@
-import { AreaConverterComponent } from "./Components/AreaCalculatorComponent";
-import { Header } from "./Components/Header";
-import { LengthConverterComponent } from "./Components/LengthCalculatorComponent";
-import { NumberTypeConverterComponent } from "./Components/BinaryConverterComponent";
-import { SpeedConverterComponent } from "./Components/SpeedCalculatorComponent";
 import { useState } from 'react';
-import { TempConverterComponent } from "./Components/TemperatureCalculatorComponent";
-import { VolumeConverterComponent } from "./Components/VolumeCalculatorComponent";
+import { Header } from "./Components/Header";
+import { AreaConverterComponent } from "./Components/AreaConverterComponent";
+import { LengthConverterComponent } from "./Components/LengthConverterComponent";
+import { NumberTypeConverterComponent } from "./Components/BinaryConverterComponent";
+import { SpeedConverterComponent } from "./Components/SpeedConverterComponent";
+import { TempConverterComponent } from "./Components/TemperatureConverterComponent";
+import { VolumeConverterComponent } from "./Components/VolumeConverterComponent";
+import { StorageConverterComponent } from './Components/StorageConverterComponent';
 
 function App() {
   const [selectedConverter, setSelectedConverter] = useState("Length");
@@ -29,12 +30,13 @@ function App() {
             <option value="Temperature">Temperature</option>
             <option value="Volume">Volume</option>
             <option value="Digital storage">Digital storage</option>
+            {/*
             <option value="Data Transfer Rate">Data Transfer Rate</option>
             <option value="Energy">Energy</option>
             <option value="Frequency">Frequency</option>
             <option value="Mass">Mass</option>
             <option value="Pressure">Pressure</option>
-            <option value="Time">Time</option>
+            <option value="Time">Time</option>*/}
           </select>
           {selectedConverter === "Length" && <LengthConverterComponent />}
           {selectedConverter === "Area" && <AreaConverterComponent />}
@@ -42,6 +44,7 @@ function App() {
           {selectedConverter === "Speed" && <SpeedConverterComponent />}
           {selectedConverter === "Temperature" && <TempConverterComponent />}
           {selectedConverter === "Volume" && <VolumeConverterComponent />}
+          {selectedConverter === "Digital storage" && <StorageConverterComponent />}
         </div>
       </div>
     </>

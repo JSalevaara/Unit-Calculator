@@ -1,4 +1,4 @@
-import { LengthUnits, AreaUnits, SpeedUnits, TempUnits, VolumeUnits } from '../types';
+import { LengthUnits, AreaUnits, SpeedUnits, TempUnits, VolumeUnits, StorageUnits } from '../types';
 
 export const lengthRates: { [key in LengthUnits]: { [key in LengthUnits]: number } } = {
     meter: {
@@ -517,5 +517,176 @@ export const volumeRates: { [key in VolumeUnits]: { [key in VolumeUnits]: number
         "tablespoon": 6.7628,
         "teaspoon": 20.2884,
         "deciliter": 1
+    }
+};
+
+export const storageRates: { [key in StorageUnits]: { [key in StorageUnits]: number } } = {
+    bit: {
+        bit: 1,
+        kilobit: 0.001,
+        megabit: 0.000001,
+        gigabit: 0.000000001,
+        terabit: 0.000000000001,
+        petabit: 0.000000000000001,
+        byte: 0.125,
+        kilobyte: 0.000125,
+        megabyte: 0.000000125,
+        gigabyte: 0.000000000125,
+        terabyte: 0.000000000000125,
+        petabyte: 0.000000000000000125
+    },
+    kilobit: {
+        bit: 1000,
+        kilobit: 1,
+        megabit: 0.001,
+        gigabit: 0.000001,
+        terabit: 0.000000001,
+        petabit: 0.000000000001,
+        byte: 125,
+        kilobyte: 0.125,
+        megabyte: 0.000125,
+        gigabyte: 0.000000125,
+        terabyte: 0.000000000125,
+        petabyte: 0.000000000000125
+    },
+    megabit: {
+        bit: 1000000,
+        kilobit: 1000,
+        megabit: 1,
+        gigabit: 0.001,
+        terabit: 0.000001,
+        petabit: 0.000000001,
+        byte: 125000,
+        kilobyte: 125,
+        megabyte: 0.125,
+        gigabyte: 0.000125,
+        terabyte: 0.000000125,
+        petabyte: 0.000000000125
+    },
+    gigabit: {
+        bit: 1000000000,
+        kilobit: 1000000,
+        megabit: 1000,
+        gigabit: 1,
+        terabit: 0.001,
+        petabit: 0.000001,
+        byte: 125000000,
+        kilobyte: 125000,
+        megabyte: 125,
+        gigabyte: 0.125,
+        terabyte: 0.000125,
+        petabyte: 0.000000125
+    },
+    terabit: {
+        bit: 1000000000000,
+        kilobit: 1000000000,
+        megabit: 1000000,
+        gigabit: 1000,
+        terabit: 1,
+        petabit: 0.001,
+        byte: 125000000000,
+        kilobyte: 125000000,
+        megabyte: 125000,
+        gigabyte: 125,
+        terabyte: 0.125,
+        petabyte: 0.000125
+    },
+    petabit: {
+        bit: 1000000000000000,
+        kilobit: 1000000000000,
+        megabit: 1000000000,
+        gigabit: 1000000,
+        terabit: 1000,
+        petabit: 1,
+        byte: 125000000000000,
+        kilobyte: 125000000000,
+        megabyte: 125000000,
+        gigabyte: 125000,
+        terabyte: 125,
+        petabyte: 0.125
+    },
+    byte: {
+        bit: 8,
+        kilobit: 0.008,
+        megabit: 0.000008,
+        gigabit: 0.000000008,
+        terabit: 0.000000000008,
+        petabit: 0.000000000000008,
+        byte: 1,
+        kilobyte: 0.001,
+        megabyte: 0.000001,
+        gigabyte: 0.000000001,
+        terabyte: 0.000000000001,
+        petabyte: 0.000000000000001
+    },
+    kilobyte: {
+        bit: 8000,
+        kilobit: 8,
+        megabit: 0.008,
+        gigabit: 0.000008,
+        terabit: 0.000000008,
+        petabit: 0.000000000008,
+        byte: 1000,
+        kilobyte: 1,
+        megabyte: 0.001,
+        gigabyte: 0.000001,
+        terabyte: 0.000000001,
+        petabyte: 0.000000000001
+    },
+    megabyte: {
+        bit: 8000000,
+        kilobit: 8000,
+        megabit: 8,
+        gigabit: 0.008,
+        terabit: 0.000008,
+        petabit: 0.000000008,
+        byte: 1000000,
+        kilobyte: 1000,
+        megabyte: 1,
+        gigabyte: 0.001,
+        terabyte: 0.000001,
+        petabyte: 0.000000001
+    },
+    gigabyte: {
+        bit: 8000000000,
+        kilobit: 8000000,
+        megabit: 8000,
+        gigabit: 8,
+        terabit: 0.008,
+        petabit: 0.000008,
+        byte: 1000000000,
+        kilobyte: 1000000,
+        megabyte: 1000,
+        gigabyte: 1,
+        terabyte: 0.001,
+        petabyte: 0.000001
+    },
+    terabyte: {
+        bit: 8000000000000,
+        kilobit: 8000000000,
+        megabit: 8000000,
+        gigabit: 8000,
+        terabit: 8,
+        petabit: 0.008,
+        byte: 1000000000000,
+        kilobyte: 1000000000,
+        megabyte: 1000000,
+        gigabyte: 1000,
+        terabyte: 1,
+        petabyte: 0.001
+    },
+    petabyte: {
+        bit: 8000000000000000,
+        kilobit: 8000000000000,
+        megabit: 8000000000,
+        gigabit: 8000000,
+        terabit: 8000,
+        petabit: 8,
+        byte: 1000000000000000,
+        kilobyte: 1000000000000,
+        megabyte: 1000000000,
+        gigabyte: 1000000,
+        terabyte: 1000,
+        petabyte: 1
     }
 };

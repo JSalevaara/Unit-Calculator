@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { AreaUnits } from "../types";
-import AreaCalculator from "../Calculators/ConverterArea";
+import AreaConverter from "../Converters/ConverterArea";
 
 interface Calculation {
     type: "Area",
@@ -36,7 +36,7 @@ export const AreaConverterComponent = () => {
         event.preventDefault();
         const numbericValue = parseFloat(value);
         if (!isNaN(numbericValue)) {
-            const result = AreaCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
+            const result = AreaConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
         } else {
             setResult(null);

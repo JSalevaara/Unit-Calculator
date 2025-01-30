@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { NumberConversion } from '../types';
-import { Converter } from '../Calculators/ConverterBinary';
+import { NumberConverter } from '../Converters/ConverterBinary';
 
 interface Conversion {
     type: "conversion",
@@ -36,7 +36,7 @@ export const NumberTypeConverterComponent = () => {
         event.preventDefault();
         const numbericValue = value !== null ? parseFloat(value) : NaN;
         if (!isNaN(numbericValue)) {
-            const result = Converter(selectedUnits.unit1, selectedUnits.unit2, value || '');
+            const result = NumberConverter(selectedUnits.unit1, selectedUnits.unit2, value || '');
             setResult(result);
         } else {
             setResult(null);
@@ -63,7 +63,7 @@ export const NumberTypeConverterComponent = () => {
                 </select>
                 <br />
                 <label>Value: </label>
-                <input type="number" id="value" value={value !== null ? value : ''} onChange={handleInputChange} />
+                <input type="text" id="value" value={value !== null ? value : ''} onChange={handleInputChange} />
                 <br />
                 <button type="submit">Calculate</button>
                 {result !== null && (

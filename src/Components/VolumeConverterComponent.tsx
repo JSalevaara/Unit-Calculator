@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { VolumeUnits } from "../types";
-import VolumeCalculator from "../Calculators/ConverterVolume";
+import VolumeConverter from "../Converters/ConverterVolume";
 
 
 interface Calculation {
@@ -37,7 +37,7 @@ export const VolumeConverterComponent = () => {
         event.preventDefault();
         const numbericValue = value !== null ? value : NaN;
         if (!isNaN(numbericValue)) {
-            const result = VolumeCalculator(selectedUnits.unit1, selectedUnits.unit2, Number(value));
+            const result = VolumeConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
         } else {
             setResult(null);
