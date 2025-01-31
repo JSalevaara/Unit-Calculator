@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { StorageUnits } from '../types';
-import StorageConverter from '../Converters/ConverterStorage';
+import { StorageConverter } from '../Converters/ConverterStorage';
 
 interface Calculation {
     type: "digital storage",
@@ -46,7 +46,7 @@ export const StorageConverterComponent = () => {
 
     return (
         <div>
-            <h1>Temperature Converter</h1>
+            <h1>Digital storage Converter</h1>
             <form onSubmit={(handleCalculate)}>
                 <label>Choose a unit: </label>
                 <select id="unit1" value={selectedUnits.unit1} onChange={handleSelectChange}>
@@ -86,7 +86,8 @@ export const StorageConverterComponent = () => {
                 <button type="submit">Calculate</button>
                 {result !== null && (
                     <div>
-                        {selectedUnits.unit2 === "bit" && <h2>Result: {result} bits</h2>}
+                        {<h2>Result: {result} {selectedUnits.unit2}s</h2>}
+                        {/*{selectedUnits.unit2 === "bit" && <h2>Result: {result} bits</h2>}
                         {selectedUnits.unit2 === "kilobit" && <h2>Result: {result} kilobits</h2>}
                         {selectedUnits.unit2 === "megabit" && <h2>Result: {result} megabits</h2>}
                         {selectedUnits.unit2 === "gigabit" && <h2>Result: {result} gigabits</h2>}
@@ -97,7 +98,7 @@ export const StorageConverterComponent = () => {
                         {selectedUnits.unit2 === "megabyte" && <h2>Result: {result} megabytes</h2>}
                         {selectedUnits.unit2 === "gigabyte" && <h2>Result: {result} gigabytes</h2>}
                         {selectedUnits.unit2 === "terabyte" && <h2>Result: {result} terabytes</h2>}
-                        {selectedUnits.unit2 === "petabyte" && <h2>Result: {result} petabytes</h2>}
+                        {selectedUnits.unit2 === "petabyte" && <h2>Result: {result} petabytes</h2>}*/}
                     </div>
                 )}
             </form>

@@ -7,6 +7,8 @@ import { SpeedConverterComponent } from "./Components/SpeedConverterComponent";
 import { TempConverterComponent } from "./Components/TemperatureConverterComponent";
 import { VolumeConverterComponent } from "./Components/VolumeConverterComponent";
 import { StorageConverterComponent } from './Components/StorageConverterComponent';
+import { DataTransferConverterComponent } from './Components/DataTransferConverterComponent';
+import { EnergyConverterComponent } from './Components/EnergyConverterComponent';
 
 function App() {
   const [selectedConverter, setSelectedConverter] = useState("Length");
@@ -30,9 +32,9 @@ function App() {
             <option value="Temperature">Temperature</option>
             <option value="Volume">Volume</option>
             <option value="Digital storage">Digital storage</option>
-            {/*
             <option value="Data Transfer Rate">Data Transfer Rate</option>
             <option value="Energy">Energy</option>
+            {/*
             <option value="Frequency">Frequency</option>
             <option value="Mass">Mass</option>
             <option value="Pressure">Pressure</option>
@@ -45,6 +47,8 @@ function App() {
           {selectedConverter === "Temperature" && <TempConverterComponent />}
           {selectedConverter === "Volume" && <VolumeConverterComponent />}
           {selectedConverter === "Digital storage" && <StorageConverterComponent />}
+          {selectedConverter === "Data Transfer Rate" && <DataTransferConverterComponent/>}
+          {selectedConverter === "Energy" &&  <EnergyConverterComponent/>}
         </div>
       </div>
     </>

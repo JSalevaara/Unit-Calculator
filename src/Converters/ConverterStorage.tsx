@@ -2,7 +2,7 @@ import { storageRates } from "../Utils/conversionRates";
 import { StorageUnits } from "../types";
 import { roundTo } from "../Utils/utilities";
 
-const StorageConverter = (unit1: StorageUnits, unit2: StorageUnits, value: number): number => {
+export const StorageConverter = (unit1: StorageUnits, unit2: StorageUnits, value: number): number => {
     if (unit1 === unit2) {
         return value;
     }
@@ -10,5 +10,3 @@ const StorageConverter = (unit1: StorageUnits, unit2: StorageUnits, value: numbe
     const result = value * conversionRate;
     return roundTo(result, 6);
 };
-
-export default StorageConverter;

@@ -1,4 +1,4 @@
-import { LengthUnits, AreaUnits, SpeedUnits, TempUnits, VolumeUnits, StorageUnits } from '../types';
+import { LengthUnits, AreaUnits, SpeedUnits, TempUnits, VolumeUnits, StorageUnits, TransferUnits, EnergyUnits } from '../types';
 
 export const lengthRates: { [key in LengthUnits]: { [key in LengthUnits]: number } } = {
     meter: {
@@ -688,5 +688,274 @@ export const storageRates: { [key in StorageUnits]: { [key in StorageUnits]: num
         gigabyte: 1000000,
         terabyte: 1000,
         petabyte: 1
+    }
+};
+
+export const transferRates: { [key in TransferUnits]: { [key in TransferUnits]: number } } = {
+    "bit per second": {
+        "bit per second": 1,
+        "kilobit per second": 0.001,
+        "megabit per second": 0.000001,
+        "gigabit per second": 0.000000001,
+        "terabit per second": 0.000000000001,
+        "byte per second": 0.125,
+        "kilobyte per second": 0.000125,
+        "megabyte per second": 0.000000125,
+        "gigabyte per second": 0.000000000125,
+        "terabyte per second": 0.000000000000125
+    },
+    "kilobit per second": {
+        "bit per second": 1000,
+        "kilobit per second": 1,
+        "megabit per second": 0.001,
+        "gigabit per second": 0.000001,
+        "terabit per second": 0.000000001,
+        "byte per second": 125,
+        "kilobyte per second": 0.125,
+        "megabyte per second": 0.000125,
+        "gigabyte per second": 0.000000125,
+        "terabyte per second": 0.000000000125
+    },
+    "megabit per second": {
+        "bit per second": 1000000,
+        "kilobit per second": 1000,
+        "megabit per second": 1,
+        "gigabit per second": 0.001,
+        "terabit per second": 0.000001,
+        "byte per second": 125000,
+        "kilobyte per second": 125,
+        "megabyte per second": 0.125,
+        "gigabyte per second": 0.000125,
+        "terabyte per second": 0.000000125
+    },
+    "gigabit per second": {
+        "bit per second": 1000000000,
+        "kilobit per second": 1000000,
+        "megabit per second": 1000,
+        "gigabit per second": 1,
+        "terabit per second": 0.001,
+        "byte per second": 125000000,
+        "kilobyte per second": 125000,
+        "megabyte per second": 125,
+        "gigabyte per second": 0.125,
+        "terabyte per second": 0.000125
+    },
+    "terabit per second": {
+        "bit per second": 1000000000000,
+        "kilobit per second": 1000000000,
+        "megabit per second": 1000000,
+        "gigabit per second": 1000,
+        "terabit per second": 1,
+        "byte per second": 125000000000,
+        "kilobyte per second": 125000000,
+        "megabyte per second": 125000,
+        "gigabyte per second": 125,
+        "terabyte per second": 0.125
+    },
+    "byte per second": {
+        "bit per second": 8,
+        "kilobit per second": 0.008,
+        "megabit per second": 0.000008,
+        "gigabit per second": 0.000000008,
+        "terabit per second": 0.000000000008,
+        "byte per second": 1,
+        "kilobyte per second": 0.001,
+        "megabyte per second": 0.000001,
+        "gigabyte per second": 0.000000001,
+        "terabyte per second": 0.000000000001
+    },
+    "kilobyte per second": {
+        "bit per second": 8000,
+        "kilobit per second": 8,
+        "megabit per second": 0.008,
+        "gigabit per second": 0.000008,
+        "terabit per second": 0.000000008,
+        "byte per second": 1000,
+        "kilobyte per second": 1,
+        "megabyte per second": 0.001,
+        "gigabyte per second": 0.000001,
+        "terabyte per second": 0.000000001
+    },
+    "megabyte per second": {
+        "bit per second": 8000000,
+        "kilobit per second": 8000,
+        "megabit per second": 8,
+        "gigabit per second": 0.008,
+        "terabit per second": 0.000008,
+        "byte per second": 1000000,
+        "kilobyte per second": 1000,
+        "megabyte per second": 1,
+        "gigabyte per second": 0.001,
+        "terabyte per second": 0.000001
+    },
+    "gigabyte per second": {
+        "bit per second": 8000000000,
+        "kilobit per second": 8000000,
+        "megabit per second": 8000,
+        "gigabit per second": 8,
+        "terabit per second": 0.008,
+        "byte per second": 1000000000,
+        "kilobyte per second": 1000000,
+        "megabyte per second": 1000,
+        "gigabyte per second": 1,
+        "terabyte per second": 0.001
+    },
+    "terabyte per second": {
+        "bit per second": 8000000000000,
+        "kilobit per second": 8000000000,
+        "megabit per second": 8000000,
+        "gigabit per second": 8000,
+        "terabit per second": 8,
+        "byte per second": 1000000000000,
+        "kilobyte per second": 1000000000,
+        "megabyte per second": 1000000,
+        "gigabyte per second": 1000,
+        "terabyte per second": 1
+    }
+};
+
+export const energyRates: { [key in EnergyUnits]: { [key in EnergyUnits]: number } } = {
+    joule: {
+        joule: 1,
+        kilojoule: 0.001,
+        megajoule: 0.000001,
+        gigajoule: 0.000000001,
+        terajoule: 0.000000000001,
+        calorie: 0.239006,
+        "kilocalorie": 0.000239006,
+        "watt-hour": 0.000277778,
+        "kilowatt-hour": 0.000000277778,
+        "megawatt-hour": 0.000000000277778,
+        "terawatt-hour": 0.000000000000277778
+    },
+    kilojoule: {
+        joule: 1000,
+        kilojoule: 1,
+        megajoule: 0.001,
+        gigajoule: 0.000001,
+        terajoule: 0.000000001,
+        calorie: 239.006,
+        "kilocalorie": 0.239006,
+        "watt-hour": 0.277778,
+        "kilowatt-hour": 0.000277778,
+        "megawatt-hour": 0.000000277778,
+        "terawatt-hour": 0.000000000277778
+    },
+    megajoule: {
+        joule: 1000000,
+        kilojoule: 1000,
+        megajoule: 1,
+        gigajoule: 0.001,
+        terajoule: 0.000001,
+        calorie: 239006,
+        "kilocalorie": 239.006,
+        "watt-hour": 277.778,
+        "kilowatt-hour": 0.277778,
+        "megawatt-hour": 0.000277778,
+        "terawatt-hour": 0.000000277778
+    },
+    gigajoule: {
+        joule: 1000000000,
+        kilojoule: 1000000,
+        megajoule: 1000,
+        gigajoule: 1,
+        terajoule: 0.001,
+        calorie: 239006000,
+        "kilocalorie": 239006,
+        "watt-hour": 277778,
+        "kilowatt-hour": 277.778,
+        "megawatt-hour": 0.277778,
+        "terawatt-hour": 0.000277778
+    },
+    terajoule: {
+        joule: 1000000000000,
+        kilojoule: 1000000000,
+        megajoule: 1000000,
+        gigajoule: 1000,
+        terajoule: 1,
+        calorie: 239006000000,
+        "kilocalorie": 239006000,
+        "watt-hour": 277778000,
+        "kilowatt-hour": 277778,
+        "megawatt-hour": 277.778,
+        "terawatt-hour": 0.277778
+    },
+    calorie: {
+        joule: 4.184,
+        kilojoule: 0.004184,
+        megajoule: 0.000004184,
+        gigajoule: 0.000000004184,
+        terajoule: 0.000000000004184,
+        calorie: 1,
+        "kilocalorie": 0.001,
+        "watt-hour": 0.00116222,
+        "kilowatt-hour": 0.00000116222,
+        "megawatt-hour": 0.00000000116222,
+        "terawatt-hour": 0.00000000000116222
+    },
+    "kilocalorie": {
+        joule: 4184,
+        kilojoule: 4.184,
+        megajoule: 0.004184,
+        gigajoule: 0.000004184,
+        terajoule: 0.000000004184,
+        calorie: 1000,
+        "kilocalorie": 1,
+        "watt-hour": 1.16222,
+        "kilowatt-hour": 0.00116222,
+        "megawatt-hour": 0.00000116222,
+        "terawatt-hour": 0.00000000116222
+    },
+    "watt-hour": {
+        joule: 3600,
+        kilojoule: 3.6,
+        megajoule: 0.0036,
+        gigajoule: 0.0000036,
+        terajoule: 0.0000000036,
+        calorie: 860.421,
+        "kilocalorie": 0.860421,
+        "watt-hour": 1,
+        "kilowatt-hour": 0.001,
+        "megawatt-hour": 0.000001,
+        "terawatt-hour": 0.000000001
+    },
+    "kilowatt-hour": {
+        joule: 3600000,
+        kilojoule: 3600,
+        megajoule: 3.6,
+        gigajoule: 0.0036,
+        terajoule: 0.0000036,
+        calorie: 860421,
+        "kilocalorie": 860.421,
+        "watt-hour": 1000,
+        "kilowatt-hour": 1,
+        "megawatt-hour": 0.001,
+        "terawatt-hour": 0.000001
+    },
+    "megawatt-hour": {
+        joule: 3600000000,
+        kilojoule: 3600000,
+        megajoule: 3600,
+        gigajoule: 3.6,
+        terajoule: 0.0036,
+        calorie: 860421000,
+        "kilocalorie": 860421,
+        "watt-hour": 1000000,
+        "kilowatt-hour": 1000,
+        "megawatt-hour": 1,
+        "terawatt-hour": 0.001
+    },
+    "terawatt-hour": {
+        joule: 3600000000000,
+        kilojoule: 3600000000,
+        megajoule: 3600000,
+        gigajoule: 3600,
+        terajoule: 3.6,
+        calorie: 860421000000,
+        "kilocalorie": 860421000,
+        "watt-hour": 1000000000,
+        "kilowatt-hour": 1000000,
+        "megawatt-hour": 1000,
+        "terawatt-hour": 1
     }
 };

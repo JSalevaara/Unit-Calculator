@@ -68,7 +68,7 @@ export const NumberTypeConverterComponent = () => {
                 <button type="submit">Calculate</button>
                 {result !== null && (
                     <div>
-                        <h2>{value} in {selectedUnits.unit1} is {result} in {selectedUnits.unit2}</h2>
+                        <h2>Result: {result} in {selectedUnits.unit2}</h2>
                     </div>
                 )}
             </form>
