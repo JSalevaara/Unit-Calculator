@@ -8,8 +8,12 @@ interface Calculation {
     unit1: EnergyUnits,
     unit2: EnergyUnits
 }
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
 
-export const EnergyConverterComponent = () => {
+export const EnergyConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "joule",
         unit2: "kilojoule",
@@ -37,8 +41,17 @@ export const EnergyConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = EnergyConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
+        }
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
         }
     };
 
@@ -85,6 +98,7 @@ export const EnergyConverterComponent = () => {
                 {result !== null && (
                     <div>
                         {<h2>Result: {result} {selectedUnits.unit2}s</h2>}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

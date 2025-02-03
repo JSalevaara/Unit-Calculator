@@ -9,7 +9,12 @@ interface Calculation {
     unit2: LengthUnits
 }
 
-export const LengthConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const LengthConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "meter",
@@ -38,10 +43,19 @@ export const LengthConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = LengthConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
         }
         
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
+        }
     };
 
     return (
@@ -86,6 +100,7 @@ export const LengthConverterComponent = () => {
                         {selectedUnits.unit2 === "yard" && <h2>Result: {result} yd</h2>}
                         {selectedUnits.unit2 === "foot" && <h2>Result: {result} ft</h2>}
                         {selectedUnits.unit2 === "inch" && <h2>Result: {result} in</h2>}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

@@ -10,7 +10,12 @@ interface Calculation {
     unit2: VolumeUnits
 }
 
-export const VolumeConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const VolumeConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
     
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
             unit1: "liter",
@@ -39,10 +44,19 @@ export const VolumeConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = VolumeConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
         }
         
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
+        }
     };
 
     return (
@@ -108,6 +122,7 @@ export const VolumeConverterComponent = () => {
                         {selectedUnits.unit2 === "cup" && <h2>Result: {result} cup</h2>}
                         {selectedUnits.unit2 === "tablespoon" && <h2>Result: {result} tbsp</h2>}
                         {selectedUnits.unit2 === "teaspoon" && <h2>Result: {result} tsp</h2>}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

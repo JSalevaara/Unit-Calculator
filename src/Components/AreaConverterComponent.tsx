@@ -9,7 +9,12 @@ interface Calculation {
     unit2: AreaUnits
 }
 
-export const AreaConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const AreaConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "square meter",
@@ -38,10 +43,18 @@ export const AreaConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = AreaConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
         }
-        
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
+        }
     };
 
     return (
@@ -92,6 +105,7 @@ export const AreaConverterComponent = () => {
                         {selectedUnits.unit2 === "square inch" && <h2>Result: {result} in²</h2>}
                         {selectedUnits.unit2 === "hectare" && <h2>Result: {result} ha</h2>}
                         {selectedUnits.unit2 === "acre" && <h2>Result: {result} acres</h2>}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

@@ -9,7 +9,12 @@ interface Calculation {
     unit2: TransferUnits
 }
 
-export const DataTransferConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const DataTransferConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "bit per second",
         unit2: "megabit per second",
@@ -37,8 +42,17 @@ export const DataTransferConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = DataTransferConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
+        }
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
         }
     };
 
@@ -81,6 +95,7 @@ export const DataTransferConverterComponent = () => {
                 {result !== null && (
                     <div>
                         {<h2>Result: {result} {selectedUnits.unit2}s</h2>}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

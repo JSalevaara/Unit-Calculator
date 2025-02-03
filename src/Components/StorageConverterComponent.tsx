@@ -9,7 +9,12 @@ interface Calculation {
     unit2: StorageUnits
 }
 
-export const StorageConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const StorageConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "bit",
@@ -38,10 +43,19 @@ export const StorageConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = StorageConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
         }
         
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
+        }
     };
 
     return (
@@ -99,6 +113,7 @@ export const StorageConverterComponent = () => {
                         {selectedUnits.unit2 === "gigabyte" && <h2>Result: {result} gigabytes</h2>}
                         {selectedUnits.unit2 === "terabyte" && <h2>Result: {result} terabytes</h2>}
                         {selectedUnits.unit2 === "petabyte" && <h2>Result: {result} petabytes</h2>}*/}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

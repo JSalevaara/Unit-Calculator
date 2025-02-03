@@ -9,7 +9,12 @@ interface Calculation {
     unit2: SpeedUnits
 }
 
-export const SpeedConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const SpeedConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "meters per second",
@@ -38,10 +43,19 @@ export const SpeedConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = SpeedConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
         }
         
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
+        }
     };
 
     return (
@@ -77,6 +91,7 @@ export const SpeedConverterComponent = () => {
                         {selectedUnits.unit2 === "miles per hour" && <h2>Result: {result} mph</h2>}
                         {selectedUnits.unit2 === "feet per second" && <h2>Result: {result} ft/s</h2>}
                         {selectedUnits.unit2 === "knots" && <h2>Result: {result} knots</h2>}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

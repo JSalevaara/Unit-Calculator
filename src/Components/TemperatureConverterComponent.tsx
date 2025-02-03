@@ -9,7 +9,12 @@ interface Calculation {
     unit2: TempUnits
 }
 
-export const TempConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const TempConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
 
     const [selectedUnits, setSelectedUnits] = useState<Calculation>({
         unit1: "celcius",
@@ -38,10 +43,19 @@ export const TempConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = TempConverter(selectedUnits.unit1, selectedUnits.unit2, Number(value));
             setResult(result);
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToHistory(entry);
         } else {
             setResult(null);
         }
         
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} ${selectedUnits.unit1}s = ${result} ${selectedUnits.unit2}s`;
+            addToFavorites(entry);
+        }
     };
 
     return (
@@ -71,6 +85,7 @@ export const TempConverterComponent = () => {
                         {selectedUnits.unit2 === "celcius" && <h2>Result: {result} °C</h2>}
                         {selectedUnits.unit2 === "fahrenheit" && <h2>Result: {result} °F</h2>}
                         {selectedUnits.unit2 === "kelvin" && <h2>Result: {result} K</h2>}
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>

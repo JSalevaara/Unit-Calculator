@@ -11,11 +11,25 @@ import { DataTransferConverterComponent } from './Components/DataTransferConvert
 import { EnergyConverterComponent } from './Components/EnergyConverterComponent';
 
 function App() {
-  const [selectedConverter, setSelectedConverter] = useState("Length");
+  const [selectedConverter, setSelectedConverter] = useState<string>("Length");
+  const [history, setHistory] = useState<string[]>([]);
+  const [favorites, setFavorites] = useState<string[]>([]);
 
   const handleConverterSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const value = event.target.value;
     setSelectedConverter(value);
+  };
+
+  const addToHistory = (entry: string) => {
+    setHistory(prevHistory => [entry, ...prevHistory]);
+  };
+
+  const addToFavorites = (entry: string) => {
+    setFavorites(prevFavorites => [entry, ...prevFavorites]);
+  };
+
+  const removeFavorite = (index: number) => {
+    setFavorites(prevFavorites => prevFavorites.filter((_, i) => i !== index));
   };
 
   return (
@@ -25,7 +39,7 @@ function App() {
         <div>
           <label>Selected converter: </label>
           <select onChange={handleConverterSelect}>
-            <option value="Length">Length</option>
+            <option value="Length">Length</option> 
             <option value="Area">Area</option>
             <option value="Converter">Number type converter</option>
             <option value="Speed">Speed</option>
@@ -40,15 +54,34 @@ function App() {
             <option value="Pressure">Pressure</option>
             <option value="Time">Time</option>*/}
           </select>
-          {selectedConverter === "Length" && <LengthConverterComponent />}
-          {selectedConverter === "Area" && <AreaConverterComponent />}
-          {selectedConverter === "Converter" && <NumberTypeConverterComponent />}
-          {selectedConverter === "Speed" && <SpeedConverterComponent />}
-          {selectedConverter === "Temperature" && <TempConverterComponent />}
-          {selectedConverter === "Volume" && <VolumeConverterComponent />}
-          {selectedConverter === "Digital storage" && <StorageConverterComponent />}
-          {selectedConverter === "Data Transfer Rate" && <DataTransferConverterComponent/>}
-          {selectedConverter === "Energy" &&  <EnergyConverterComponent/>}
+          {selectedConverter === "Length" && <LengthConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites}/>}
+          {selectedConverter === "Area" && <AreaConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites} />}
+          {selectedConverter === "Converter" && <NumberTypeConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites} />}
+          {selectedConverter === "Speed" && <SpeedConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites} />}
+          {selectedConverter === "Temperature" && <TempConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites} />}
+          {selectedConverter === "Volume" && <VolumeConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites} />}
+          {selectedConverter === "Digital storage" && <StorageConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites} />}
+          {selectedConverter === "Data Transfer Rate" && <DataTransferConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites}/>}
+          {selectedConverter === "Energy" &&  <EnergyConverterComponent addToHistory={addToHistory} addToFavorites={addToFavorites}/>}
+        </div>
+        <div>
+            <h2>Calculation history</h2>
+            <ul>
+            {history.slice(0, 5).map((entry, index) => (
+              <li key={index}>{entry}</li>
+            ))}
+            </ul>
+        </div>
+        <div>
+            <h2>Favorites</h2>
+            <ul>
+            {favorites.map((entry, index) => (
+              <li key={index}>
+              {entry}
+              <button onClick={() => removeFavorite(index)}>Remove</button>
+              </li>
+            ))}
+            </ul>
         </div>
       </div>
     </>

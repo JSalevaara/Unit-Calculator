@@ -9,7 +9,12 @@ interface Conversion {
     unit2: NumberConversion
 }
 
-export const NumberTypeConverterComponent = () => {
+interface FunctionProps {
+    addToHistory: (entry: string) => void
+    addToFavorites: (entry: string) => void
+}
+
+export const NumberTypeConverterComponent: React.FC<FunctionProps> = ({ addToFavorites, addToHistory}) => {
 
     const [selectedUnits, setSelectedUnits] = useState<Conversion>({
         type: "conversion",
@@ -38,10 +43,19 @@ export const NumberTypeConverterComponent = () => {
         if (!isNaN(numbericValue)) {
             const result = NumberConverter(selectedUnits.unit1, selectedUnits.unit2, value || '');
             setResult(result);
+            const entry = `${value} in ${selectedUnits.unit1} = ${result} in ${selectedUnits.unit2}`;
+            addToHistory(entry);
         } else {
             setResult(null);
         }
         
+    };
+
+    const handleAddToFavorites = () => {
+        if (result !== null) {
+            const entry = `${value} in ${selectedUnits.unit1} = ${result} in ${selectedUnits.unit2}`;
+            addToFavorites(entry);
+        }
     };
 
     return (
@@ -69,6 +83,7 @@ export const NumberTypeConverterComponent = () => {
                 {result !== null && (
                     <div>
                         <h2>Result: {result} in {selectedUnits.unit2}</h2>
+                        <button type="button" onClick={handleAddToFavorites}>Add to favorites</button>
                     </div>
                 )}
             </form>
